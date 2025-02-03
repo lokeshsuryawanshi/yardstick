@@ -1,4 +1,3 @@
-// lib/mongodb.ts
 import { MongoClient } from 'mongodb';
 
 if (!process.env.MONGODB_URI) {
@@ -8,15 +7,22 @@ if (!process.env.MONGODB_URI) {
 const uri: string = process.env.MONGODB_URI;
 const options = {};
 
-let client = new MongoClient(uri, options);
+const client = new MongoClient(uri, options);
 let clientPromise: Promise<MongoClient>;
+
+// Define a custom interface for the global object
+interface CustomGlobal {
+  _mongoClientPromise?: Promise<MongoClient>;
+}
+
+declare const global: CustomGlobal;
 
 if (process.env.NODE_ENV === 'development') {
   // Use a global variable in development to prevent multiple connections
-  if (!(global as any)._mongoClientPromise) {
-    (global as any)._mongoClientPromise = client.connect();
+  if (!global._mongoClientPromise) {
+    global._mongoClientPromise = client.connect();
   }
-  clientPromise = (global as any)._mongoClientPromise;
+  clientPromise = global._mongoClientPromise;
 } else {
   clientPromise = client.connect();
 }

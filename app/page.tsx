@@ -104,7 +104,7 @@ export default async function Home() {
                     <div className="flex flex-col sm:flex-row gap-2">
                       {/* Toggle Completion */}
                       <form
-                        action={async (formData: FormData) => {
+                        action={async () => {
                           "use server";
                           await toggleTaskCompletion(task._id!.toString(), !task.completed);
                         }}

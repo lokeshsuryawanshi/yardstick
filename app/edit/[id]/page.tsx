@@ -20,7 +20,7 @@ export default async  function EditTask({ params }: EditPageProps) {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
         <div className="bg-white p-8 rounded-2xl shadow-2xl text-center">
           <h2 className="text-2xl font-bold text-red-600 mb-4">Task Not Found</h2>
-          <p className="text-gray-600">The task you're looking for doesn't exist.</p>
+          <p className="text-gray-600">The task you are looking for does not exist.</p>
         </div>
       </div>
     );

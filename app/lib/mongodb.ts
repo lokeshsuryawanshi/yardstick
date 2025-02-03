@@ -1,3 +1,4 @@
+// lib/mongodb.ts
 import { MongoClient } from 'mongodb';
 
 if (!process.env.MONGODB_URI) {
@@ -7,15 +8,15 @@ if (!process.env.MONGODB_URI) {
 const uri: string = process.env.MONGODB_URI;
 const options = {};
 
-const client = new MongoClient(uri, options);
+let client = new MongoClient(uri, options);
 let clientPromise: Promise<MongoClient>;
 
 if (process.env.NODE_ENV === 'development') {
-  // Use a type assertion to attach the promise to globalThis
-  if (!(globalThis as any)._mongoClientPromise) {
-    (globalThis as any)._mongoClientPromise = client.connect();
+  // Use a global variable in development to prevent multiple connections
+  if (!(global as any)._mongoClientPromise) {
+    (global as any)._mongoClientPromise = client.connect();
   }
-  clientPromise = (globalThis as any)._mongoClientPromise;
+  clientPromise = (global as any)._mongoClientPromise;
 } else {
   clientPromise = client.connect();
 }

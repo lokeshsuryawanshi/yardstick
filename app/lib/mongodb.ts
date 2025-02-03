@@ -10,16 +10,12 @@ const options = {};
 const client = new MongoClient(uri, options);
 let clientPromise: Promise<MongoClient>;
 
-declare global {
-  // Use a proper type instead of `any`
-  var _mongoClientPromise: Promise<MongoClient> | undefined;
-}
-
 if (process.env.NODE_ENV === 'development') {
-  if (!global._mongoClientPromise) {
-    global._mongoClientPromise = client.connect();
+  // Use a type assertion to attach the promise to globalThis
+  if (!(globalThis as any)._mongoClientPromise) {
+    (globalThis as any)._mongoClientPromise = client.connect();
   }
-  clientPromise = global._mongoClientPromise;
+  clientPromise = (globalThis as any)._mongoClientPromise;
 } else {
   clientPromise = client.connect();
 }

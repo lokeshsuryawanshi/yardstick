@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Task Manager Application
 
-## Getting Started
+## Overview
+Task Manager is a simple application that allows you to create, view, edit, and delete tasks. Each task includes a title, description, due date, and a completion status. The app is built using Next.js with Server Actions, MongoDB for data persistence, TypeScript for type safety, and Tailwind CSS for styling. This project is part of an internship assignment and can be easily set up locally.
 
-First, run the development server:
+## Prerequisites
+Before you begin, make sure you have the following installed on your system:
+- **Node.js** (v16 or later) – [Download Node.js](https://nodejs.org/)
+- **npm** (comes with Node.js)
+- **MongoDB** – Either a local installation or a cloud instance like [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+
+Additionally, you may find these documentation resources helpful:
+- [Next.js Server Actions Documentation](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions)
+- [MongoDB Node.js Driver Usage Examples](https://www.mongodb.com/docs/drivers/node/current/usage-examples/)
+
+## Installation
+Follow these steps to set up the application locally:
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/lokeshsuryawanshi/yardstick.git
+   cd task-manager
+# Task Manager
+
+## Install Dependencies
+
+Install the required packages using npm:
+
+```bash
+npm install
+```
+
+## Configure Environment Variables
+
+Create a file named `.env.local` in the root directory of the project and add your MongoDB connection string:
+
+```env
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/task-manager?retryWrites=true&w=majority
+```
+
+## Tailwind CSS Setup
+
+Tailwind CSS is already configured in the project. If you wish to learn more or customize the styles, refer to the [Tailwind CSS Documentation](https://tailwindcss.com/).
+
+## Running the Application
+
+Start the development server by running:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+After the server starts, open your browser and navigate to [http://localhost:3000](http://localhost:3000) to see the application in action.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Create Tasks:** Add new tasks with a title, description, and due date.
+- **View Tasks:** See a list of all tasks, including their completion status.
+- **Edit Tasks:** Update task details. After editing, the app redirects you back to the main page.
+- **Delete Tasks:** Remove tasks from the list.
+- **Toggle Completion:** Mark tasks as complete or incomplete.
+- **Auto Update:** The application automatically refreshes the task list after any change.
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+/app
+│── page.tsx                # Main page displaying the task list and form
+│── /edit/[id]/page.tsx     # Page for editing an existing task
+/lib
+│── mongodb.ts              # MongoDB connection setup
+/app/actions.ts             # Server actions for handling tasks (create, update, delete, toggle)
+/styles                     # Contains global CSS files, including Tailwind CSS configuration
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Additional Information
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Server Actions & Revalidation:** The app leverages Next.js Server Actions. After any task operation, the page revalidates to display the latest data.
+- **Redirection:** Once a task is updated, the app automatically redirects back to the main page.
+- **Handling Dynamic Parameters:** The project is configured to properly handle asynchronous route parameters for editing tasks.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If you have any questions or run into issues, please consult the documentation links provided or feel free to reach out. 

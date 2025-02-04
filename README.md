@@ -1,7 +1,7 @@
 # Task Manager Application
 
 ## Overview
-Task Manager is a simple application that allows you to create, view, edit, and delete tasks. Each task includes a title, description, due date, and a completion status. The app is built using Next.js with Server Actions, MongoDB for data persistence, TypeScript for type safety, and Tailwind CSS for styling. This project is part of an internship assignment and can be easily set up locally.
+Task Manager is a simple application that allows you to create, view, edit, and delete tasks. Each task includes a title, description, due date, and a completion status. The app is built using Next.js with Server Actions, MongoDB for data persistence, TypeScript for type safety, and Tailwind CSS for styling.
 
 ## Prerequisites
 Before you begin, make sure you have the following installed on your system:
@@ -19,10 +19,9 @@ Follow these steps to set up the application locally:
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/lokeshsuryawanshi/yardstick.git
-   cd task-manager
-# Task Manager
+   cd yardstick
 
-## Install Dependencies
+2. ## Install Dependencies
 
 Install the required packages using npm:
 
@@ -30,7 +29,7 @@ Install the required packages using npm:
 npm install
 ```
 
-## Configure Environment Variables
+3. ## Configure Environment Variables
 
 Create a file named `.env.local` in the root directory of the project and add your MongoDB connection string:
 
@@ -38,11 +37,11 @@ Create a file named `.env.local` in the root directory of the project and add yo
 MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/task-manager?retryWrites=true&w=majority
 ```
 
-## Tailwind CSS Setup
+4. ## Tailwind CSS Setup
 
 Tailwind CSS is already configured in the project. If you wish to learn more or customize the styles, refer to the [Tailwind CSS Documentation](https://tailwindcss.com/).
 
-## Running the Application
+5. ## Running the Application
 
 Start the development server by running:
 
